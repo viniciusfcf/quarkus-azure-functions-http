@@ -1,3 +1,6 @@
+#function runner
+functions/*-runner
+
 #Maven
 target/
 pom.xml.tag

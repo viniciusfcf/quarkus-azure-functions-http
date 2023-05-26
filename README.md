@@ -22,16 +22,25 @@ If you want to learn more about building native executables, please consult http
 
 ## Test using Azure Functions Core Tools (native mode)
 
-``` bash
+Build to run locally
+```
 mvn clean package -Pnative
+```
+
+Build and publish on Azure
+``` bash
+mvn clean package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel-builder-image:22.3.2.1-Final-java17
+```
+
+``` bash
+cp target/quarkus-azure-functions-http-1.0.0-SNAPSHOT-runner functions/
 ```
 
 ``` bash
 cd functions
 ```
 
-``` bash
-func start --custom
+Test locally
 ```
 
 ``` bash
