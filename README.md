@@ -22,23 +22,28 @@ If you want to learn more about building native executables, please consult http
 
 ## Test using Azure Functions Core Tools (native mode)
 
-```
+``` bash
 mvn clean package -Pnative
 ```
 
-```
+``` bash
 cd functions
 ```
 
-```
-func start
+``` bash
+func start --custom
 ```
 
-```
+``` bash
 curl localhost:7071/api/funq
 ```
 
-```
+``` bash
 curl localhost:7071/api/resteasy
 ```
 
+## Deploy to Azure Functions with the Azure Functions Core Tools (native mode)
+
+``` bash
+func azure functionapp publish <FunctionAppName>
+```
