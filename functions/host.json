@@ -14,7 +14,7 @@
   },
   "customHandler": {
     "description": {
-      "defaultExecutablePath": "../target/quarkus-azure-functions-http-1.0.0-SNAPSHOT-runner",
+      "defaultExecutablePath": "quarkus-azure-functions-http-1.0.0-SNAPSHOT-runner",
       "workingDirectory": "",
       "arguments": [
         "-Dquarkus.http.port=${FUNCTIONS_CUSTOMHANDLER_PORT}"
