@@ -26,7 +26,7 @@ jobs:
           cp -r functions target
           cp target/quarkus-azure-functions-http-1.0.0-SNAPSHOT-runner functions/
           cd functions
-          zip -r native_quarkus_function.zip .
+          zip -r ./native_quarkus_function.zip .
       - name: Azure Login
         uses: azure/login@v1
         with:
