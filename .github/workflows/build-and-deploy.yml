@@ -1,0 +1,40 @@
+name: Build and deploy native image
+on:
+  push:
+    branches:
+      - master
+env:
+  FUNCTION_NAME: funqy-azure-example
+
+jobs:
+  build-native:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          version: 'latest'
+          java-version: '17'
+          components: 'native-image'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build Quarkus Function with GraalVM
+        run: |
+          ./mvnw -Pnative clean package -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=docker
+      - name: Create package
+        run: |
+          cp -r functions target
+          cp target/quarkus-azure-functions-http-1.0.0-SNAPSHOT-runner functions/
+          cd functions
+          zip -r ./native_quarkus_function.zip .
+          ls -la
+          pwd
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Deploy to Azure Function
+        uses: Azure/functions-action@v1
+        with:
+          app-name: ${{ env.FUNCTION_NAME }}
+          package: functions/native_quarkus_function.zip
