@@ -122,9 +122,8 @@
             <javaVersion>17</javaVersion>
           </runtime>
           <!-- init: YOU SHOULD CONFIGURE-->
-          <artifactPath>target/quarkus-azure-functions-http-1.0.0-SNAPSHOT</artifactPath>
           <nativeExecutable>true</nativeExecutable>
-          <hostJson>host.json</hostJson>
+          <customHandlerArgs>-Dquarkus.http.port=${FUNCTIONS_CUSTOMHANDLER_PORT}</customHandlerArgs>
           <!--end -->
           <appSettings>
             <property>

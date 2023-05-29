@@ -58,3 +58,33 @@ Publish
 ```
 func azure functionapp publish <function app name>
 ```
+
+
+# After the PR update azure-functions-maven-plugin
+
+Build to run locally
+```
+mvn clean package -Pnative
+```
+
+Build do publish on Azure
+```
+mvn clean package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.builder-image=quay.io/quarkus/ubi-quarkus-mandrel-builder-image:22.3.2.1-Final-java17
+```
+
+```
+cd target/azure-functions/quarkus-azure-functions-http
+```
+
+Test local
+```
+func start
+```
+
+```
+curl localhost:7071/api/funq
+```
+
+```
+curl localhost:7071/api/resteasy
+```
