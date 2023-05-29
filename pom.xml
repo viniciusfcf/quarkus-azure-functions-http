@@ -6,9 +6,9 @@
   <artifactId>quarkus-azure-functions-http</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
-    <azure.functions.maven.plugin.version>1.19.0</azure.functions.maven.plugin.version>
+    <azure.functions.maven.plugin.version>1.27.0-SNAPSHOT</azure.functions.maven.plugin.version>
     <compiler-plugin.version>3.11.0</compiler-plugin.version>
-    <functionAppName>${project.artifactId}-1684855984855</functionAppName>
+    <functionAppName>${project.artifactId}</functionAppName>
     <functionAppRegion>eastus</functionAppRegion>
     <functionResourceGroup>functiondemo</functionResourceGroup>
     <maven.compiler.release>17</maven.compiler.release>
@@ -47,6 +47,11 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-funqy-http</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-azure-functions-http</artifactId>
+      <version>999-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
@@ -116,15 +121,15 @@
             <os>linux</os>
             <javaVersion>17</javaVersion>
           </runtime>
+          <!-- init: YOU SHOULD CONFIGURE-->
           <artifactPath>target/quarkus-azure-functions-http-1.0.0-SNAPSHOT</artifactPath>
+          <nativeExecutable>true</nativeExecutable>
+          <hostJson>host.json</hostJson>
+          <!--end -->
           <appSettings>
             <property>
               <name>FUNCTIONS_EXTENSION_VERSION</name>
               <value>~4</value>
-            </property>
-            <property>
-              <name>FUNCTIONS_WORKER_RUNTIME</name>
-              <value>java</value>
             </property>
           </appSettings>
         </configuration>
